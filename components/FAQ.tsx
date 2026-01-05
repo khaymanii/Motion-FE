@@ -4,29 +4,29 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "How does the WhatsApp housing search work?",
+    question: "How do I book rides or order food?",
     answer:
-      "You simply message our AI agent on WhatsApp. It asks for your location, budget, and house type, then instantly shows available listings near you.",
+      "Just message our Motion bot on WhatsApp. It asks what you need — a ride, food, groceries, or parcels — then helps you complete your order instantly.",
   },
   {
-    question: "Is this service free?",
+    question: "Do I need to download an app?",
     answer:
-      "Yes. Searching for houses is completely free. Some landlords or agents may attach inspection fees, depending on their policies.",
+      "No app needed! Everything happens inside WhatsApp — fast, simple, and familiar.",
   },
   {
-    question: "Where do the listings come from?",
+    question: "Are there any fees?",
     answer:
-      "We gather verified listings from our network of landlords, agents, and trusted housing platforms to ensure accuracy.",
+      "Rides, deliveries, and orders are charged as usual by the service provider. Using Motion on WhatsApp is completely free.",
   },
   {
-    question: "Can I schedule inspections via WhatsApp?",
+    question: "Which services are available?",
     answer:
-      "Yes. After you select a house, our agent will automatically help you book an inspection with the property contact.",
+      "Motion currently supports booking rides (Uber, Bolt, inDrive), ordering food, sending parcels, and shopping for groceries — all through WhatsApp.",
   },
   {
-    question: "Do I need to download any app?",
+    question: "Is Motion available everywhere?",
     answer:
-      "No app needed. Everything happens inside WhatsApp—fast, simple, and familiar.",
+      "Motion works wherever WhatsApp is available. Services depend on local providers, so you can check availability in your area directly through the chat.",
   },
 ];
 
@@ -38,14 +38,14 @@ export default function FAQ() {
   };
 
   return (
-    <section className="w-full bg-black text-white py-20">
+    <section className="w-full bg-white text-gray-900 py-20">
       <div className="max-w-5xl mx-auto px-6">
         {/* Title */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-center">
-          Frequently Asked <span className="text-[#fa343a]">Questions</span>
+          Frequently Asked <span className="text-[#0F9D58]">Questions</span>
         </h2>
-        <p className="text-gray-400 text-center mt-3 max-w-xl mx-auto text-sm md:text-base">
-          Everything you need to know before getting started.
+        <p className="text-gray-600 text-center mt-3 max-w-xl mx-auto text-sm md:text-base">
+          Everything you need to know before getting started with Motion.
         </p>
 
         {/* Accordion */}
@@ -53,7 +53,7 @@ export default function FAQ() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="rounded-xl bg-[#101010] border border-[#222] overflow-hidden hover:border-[#fa343a55] transition-all"
+              className="rounded-xl bg-[#F9FAFB] border border-gray-200 overflow-hidden hover:border-[#0F9D58] transition-all"
             >
               {/* Question */}
               <button
@@ -63,7 +63,7 @@ export default function FAQ() {
                 {/* Accent bar */}
                 <div
                   className={`w-1 rounded-full h-6 mt-1 transition-all ${
-                    openIndex === index ? "bg-[#fa343a]" : "bg-[#333]"
+                    openIndex === index ? "bg-[#0F9D58]" : "bg-gray-300"
                   }`}
                 ></div>
 
@@ -74,7 +74,7 @@ export default function FAQ() {
 
               {/* Answer */}
               <div
-                className={`px-5 pb-5 text-gray-400 text-sm md:text-base transition-all duration-300 ${
+                className={`px-5 pb-5 text-gray-600 text-sm md:text-base transition-all duration-300 ${
                   openIndex === index
                     ? "max-h-40 opacity-100"
                     : "max-h-0 opacity-0"

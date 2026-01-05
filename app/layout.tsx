@@ -9,8 +9,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Yard - Find Your Next Home with AI Agent on WhatsApp",
-  description: "Find your next home with an AI-powered WhatsApp assistant.",
+  title: "Motion - Simplifying everyday movement",
+  description:
+    "Motion is a WhatsApp-first platform that simplifies everyday life by letting users book rides, order food, send parcels, and shop for groceries through a single chat experience. By unifying essential mobility and delivery services into one interface, Motion removes friction and makes daily tasks faster, easier, and more accessible.",
 };
 
 export default function RootLayout({
@@ -40,7 +41,6 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-
       <body className={`${poppins.variable} font-sans antialiased`}>
         {children}
       </body>

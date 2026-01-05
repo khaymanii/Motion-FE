@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MessageCircle } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 
 function Header() {
@@ -15,27 +14,31 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <nav
       className={`w-full sticky top-0 z-50 transition-all duration-300 
-      bg-white 
-      ${isScrolled ? "shadow-md" : "shadow-none"}
-    `}
+        bg-white 
+        ${isScrolled ? "shadow-md" : "shadow-none"}
+      `}
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 py-2 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <Link href="/">
-            <h2 className="text-2xl font-extrabold text-[#fa343a]">Yard.</h2>
-          </Link>
-        </div>
+      <div className="max-w-7xl mx-auto px-5 md:px-8 py-3 flex items-center justify-between">
+        {/* Brand */}
+        <Link href="/">
+          <h2 className="text-2xl font-extrabold text-[#0F9D58]">motion</h2>
+        </Link>
 
+        {/* WhatsApp CTA */}
         <a
           href="https://wa.me/2348116074956"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white animate-spin bg-[#fa343a] hover:bg-[#e30a11] w-10 h-10 rounded-full text-sm font-medium shadow-sm hover:shadow-md flex justify-center items-center gap-2"
+          className="flex items-center justify-center w-11 h-11 rounded-full 
+          bg-[#0F9D58] hover:bg-[#0B6E3F] 
+          text-white shadow-sm hover:shadow-md 
+          transition-all duration-200"
         >
-          <FaWhatsapp size={24} />
+          <FaWhatsapp size={22} />
         </a>
       </div>
     </nav>
