@@ -30,7 +30,7 @@ function Header() {
 
         {/* WhatsApp CTA */}
         <a
-          href="https://wa.me/2348116074956"
+          href="https://wa.me/2348051106168"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center w-11 h-11 rounded-full 

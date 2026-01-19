@@ -44,7 +44,7 @@ export default function Footer() {
             </p>
 
             <a
-              href="https://wa.me/2348116074956"
+              href="https://wa.me/2348051106168"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-5 bg-[#0F9D58] text-white px-5 py-3 rounded-xl text-sm font-semibold 
