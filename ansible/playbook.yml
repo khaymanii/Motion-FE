@@ -1,0 +1,20 @@
+- hosts: web
+  become: yes
+
+  tasks:
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Start Docker
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Pull Docker Image
+      command: docker pull kenneth4/motion-fe:0.1
+
+    - name: Run Container
+      command: docker run -d -p 80:3000 kenneth4/motion-fe:0.1
