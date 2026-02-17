@@ -79,14 +79,14 @@ jobs:
       # -------------------
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@${{ secrets.EC2_HOST }} << "EOF"
           
-          docker stop motion-fe || true
-          docker rm motion-fe || true
+          sudo docker stop motion-fe || true
+          sudo docker rm motion-fe || true
           
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/motion-fe:latest
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/motion-fe:latest
           
-          docker run -d \
+          sudo docker run -d \
             --name motion-fe \
             -p 80:3000 \
             ${{ secrets.DOCKERHUB_USERNAME }}/motion-fe:latest
