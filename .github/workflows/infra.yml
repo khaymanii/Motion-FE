@@ -59,5 +59,12 @@ jobs:
             sleep 10
           done
 
+      - name: Debug remote host
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@$EC2_IP "which python3 && python3 --version && uname -a"
+
+      - name: Debug inventory
+        run: cat inventory.ini
+
       - name: Run Ansible
         run: ansible-playbook -i inventory.ini ansible/playbook.yml --private-key key.pem
