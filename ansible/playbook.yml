@@ -6,14 +6,17 @@
     - name: Install Docker
       raw: yum install -y docker
 
-    - name: Start Docker
+    - name: Start Docker service
       raw: systemctl start docker && systemctl enable docker
 
-    - name: Pull Docker Image
-      raw: docker pull kenneth4/motion-fe:0.1
+    - name: Add ec2-user to docker group
+      raw: usermod -aG docker ec2-user
 
-    - name: Stop old container if exists
+    - name: Pull Docker image
+      raw: docker pull kenneth4/motion-fe:latest
+
+    - name: Stop old container if it exists
       raw: docker rm -f motion-fe || true
 
-    - name: Run Container
-      raw: docker run -d -p 80:3000 --name motion-fe kenneth4/motion-fe:0.1
+    - name: Run container
+      raw: docker run -d -p 80:3000 --name motion-fe kenneth4/motion-fe:latest
