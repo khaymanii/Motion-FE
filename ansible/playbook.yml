@@ -1,23 +1,19 @@
 - hosts: web
   gather_facts: false
   become: yes
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
     - name: Install Docker
-      yum:
-        name: docker
-        state: present
+      raw: yum install -y docker
 
     - name: Start Docker
-      service:
-        name: docker
-        state: started
-        enabled: true
+      raw: systemctl start docker && systemctl enable docker
 
     - name: Pull Docker Image
-      command: docker pull kenneth4/motion-fe:0.1
+      raw: docker pull kenneth4/motion-fe:0.1
+
+    - name: Stop old container if exists
+      raw: docker rm -f motion-fe || true
 
     - name: Run Container
-      command: docker run -d -p 80:3000 kenneth4/motion-fe:0.1
+      raw: docker run -d -p 80:3000 --name motion-fe kenneth4/motion-fe:0.1
