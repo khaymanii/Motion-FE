@@ -1,12 +1,10 @@
 name: Infrastructure Provisioning
-
 on:
   workflow_dispatch:
 
 jobs:
   provision:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -34,7 +32,10 @@ jobs:
         run: echo "EC2_IP=$(terraform output -raw ec2_public_ip)" >> $GITHUB_ENV
 
       - name: Install Ansible
-        run: sudo apt-get update && sudo apt-get install -y ansible
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install ansible
 
       - name: Add SSH Key
         run: |
@@ -45,6 +46,18 @@ jobs:
         run: |
           echo "[web]" > inventory.ini
           echo "$EC2_IP ansible_user=ec2-user ansible_python_interpreter=/usr/bin/python3 ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> inventory.ini
+
+      - name: Wait for EC2 to be ready
+        run: |
+          echo "Waiting for SSH to be available on $EC2_IP..."
+          for i in {1..20}; do
+            if ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i key.pem ec2-user@$EC2_IP echo "SSH ready"; then
+              echo "EC2 is ready!"
+              break
+            fi
+            echo "Attempt $i failed, retrying in 10s..."
+            sleep 10
+          done
 
       - name: Run Ansible
         run: ansible-playbook -i inventory.ini ansible/playbook.yml --private-key key.pem
