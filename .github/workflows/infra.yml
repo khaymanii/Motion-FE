@@ -44,7 +44,7 @@ jobs:
       - name: Create Inventory
         run: |
           echo "[web]" > inventory.ini
-          echo "$EC2_IP ansible_user=ec2-user" >> inventory.ini
+          echo "$EC2_IP ansible_user=ec2-user ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> inventory.ini
 
       - name: Run Ansible
         run: ansible-playbook -i inventory.ini ansible/playbook.yml --private-key key.pem
